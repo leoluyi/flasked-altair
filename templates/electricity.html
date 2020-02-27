@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Electricity{% endblock %}
+{% block content %}
+<div class="charts">
+  <h2>IOWA Electricity consumption chart</h2>
+  <div class="row"><div id="electricity"></div></div><hr>
+  <div class="row"><div id="barley"></div></div><hr>
+  <!-- Placeholder for the tooltip -->
+  <div id="vis-tooltip" class="vg-tooltip"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- Render Charts -->
+<script type="text/javascript">
+  function parse(url, div) {
+    var opt = {
+      mode: "vega-lite",
+      renderer: "svg",
+      actions: {export: true, source: false, editor: false}
+    };
+
+    vegaEmbed("#"+div, url, opt, function(error, result) {
+      // result.view is the Vega View, url is the original Vega-Lite specification
+      vegaTooltip.vegaLite(result.view, url);
+    });
+  }
+
+
+  parse("/data/electricity","electricity");
+  parse("/data/barley_yield","barley")
+</script>
+{% endblock %}

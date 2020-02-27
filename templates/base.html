@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+  <link rel="stylesheet" href="assets/style.css" />
+  <title>{% block title %}{% endblock %} - Flasked Altair Demo</title>
+  {% endblock %}
+
+  {%- block styles %}
+  <!-- Bootstrap -->
+  <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+  <script src="https://vega.github.io/datalib/datalib.min.js"></script>
+
+  <!-- Vega Tooltip
+  <script src="https://vega.github.io/vega-tooltip/vega-tooltip.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://vega.github.io/vega-tooltip/vega-tooltip.css">-->
+  <!-- Import Vega 3 & Vega-Lite 2 (does not have to be from CDN) -->
+  <link rel="stlesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/vega-tooltip.scss">
+  <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/build/vega-tooltip.min.js"></script>
+
+  {%- endblock styles %}
+</head>
+<body>
+  {% block body -%}
+  <header>
+  {% block navbar %}
+  <div class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      {{ nav.mynavbar.render() }}
+  </div>
+  {% endblock %}
+  </header>
+
+  <main role="main" class="container">
+  <div id="content">
+    {% block content -%}
+    {%- endblock %}
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+    {% block footer %}
+    &copy; Copyright 2020 by <a href="#">leoluyi</a>.
+    {% endblock %}
+    </div>
+</footer>
+
+  {% block scripts %}
+  <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+  <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+  {%- endblock scripts %}
+  {%- endblock body %}
+</body>
+</html>

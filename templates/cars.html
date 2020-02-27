@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Cars{% endblock %}
+{% block content %}
+  <div class="charts">
+    <h1>Car Graph</h1>
+    <div class="row"><div id="cars"></div></div><hr>
+    <!-- Placeholder for the tooltip -->
+    <div id="vis-tooltip" class="vg-tooltip"></div>
+  </div>
+{% endblock %}
+{% block scripts %}
+<!-- Render Charts -->
+<script type="text/javascript">
+  function parse(url, div) {
+    var opt = {
+      mode: "vega-lite",
+      renderer: "svg",
+      actions: {export: true, source: false, editor: false}
+    };
+
+    vegaEmbed("#"+div, url, opt, function(error, result) {
+      // result.view is the Vega View, url is the original Vega-Lite specification
+      vegaTooltip.vegaLite(result.view, url);
+    });
+  }
+
+
+  parse("/data/cars","cars");
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+hr, h3 {
+    padding-bottom: 20px;
+}
+
+canvas {
+    background-color: #fffff;
+}
+
+div.waterfall {
+    width: 1200px;
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
